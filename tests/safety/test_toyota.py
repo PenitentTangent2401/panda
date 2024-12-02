@@ -4,7 +4,7 @@ import random
 import unittest
 import itertools
 
-from panda import Panda
+from panda import Panda, ALTERNATIVE_EXPERIENCE
 from panda.tests.libpanda import libpanda_py
 import panda.tests.safety.common as common
 from panda.tests.safety.common import CANPackerPanda
