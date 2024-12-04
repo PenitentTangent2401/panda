@@ -3,7 +3,7 @@ name: tests
 on:
   push:
     branches:
-      - secoc_long
+      - master
   pull_request:
 
 concurrency:
