@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - master
+      - secoc_long
   pull_request:
 
 concurrency:

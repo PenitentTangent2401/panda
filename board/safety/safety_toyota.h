@@ -14,6 +14,7 @@
   TOYOTA_BASE_TX_MSGS \
   {0x2E4, 0, 8}, {0x131, 0, 8},  /* STEERING_LKA (longer message for SecOC), STEERING_LTA_2 */  \
   {0x183, 0, 8}, {0x411, 0, 8},  /* ACC_CONTROL_2, PCS_HUD */  \
+  {0x24D, 0, 8}, /* ACC_CONTROL_3 */ \
   {0x750, 0, 8},  /* radar diagnostic address */  \
 
 #define TOYOTA_COMMON_LONG_TX_MSGS                                                                                                          \
@@ -225,6 +226,13 @@ static bool toyota_tx_hook(const CANPacket_t *to_send) {
 
       bool violation = !toyota_secoc;  // Only SecOC cars may transmit this message
       violation |= longitudinal_accel_checks(desired_accel, TOYOTA_LONG_LIMITS);
+
+      if (violation) {
+        tx = false;
+      }
+    }
+    if (addr == 0x24D) {
+      bool violation = !toyota_secoc; // Only SecOC cars may transmit this message
 
       if (violation) {
         tx = false;
